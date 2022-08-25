@@ -23,9 +23,8 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     max_pods            = var.primary_max_pods
   }
 
-  service_principal {
-    client_id     = var.client_id
-    client_secret = var.client_secret
+  identity {
+    type = var.identity_type
   }
 
   network_profile {

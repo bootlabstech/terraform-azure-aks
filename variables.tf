@@ -174,3 +174,7 @@ variable "secondary_node_count" {
   description = "Number of nodes in node pool."
 }
 
+variable "identity_type" {
+  type        = string
+  description = "Specifies the type of Managed Service Identity that should be configured on this Kubernetes Cluster. Possible values are SystemAssigned, UserAssigned, SystemAssigned, UserAssigned (to enable both)."
+}

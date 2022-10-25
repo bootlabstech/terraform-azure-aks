@@ -1,53 +1,77 @@
 resource "azurerm_kubernetes_cluster" "cluster" {
-  name                              = var.cluster_name
-  resource_group_name               = var.resource_group_name
-  location                          = var.location
-  dns_prefix                        = var.dns_prefix
-  kubernetes_version                = var.kubernetes_version
-  sku_tier                          = var.sku_tier
-  automatic_channel_upgrade         = var.automatic_channel_upgrade
-  private_cluster_enabled           = var.private_cluster_enabled
-  public_network_access_enabled     = var.public_network_access_enabled
-  role_based_access_control_enabled = var.enable_role_based_access_control
+  name                          = var.name
+  location                      = var.location
+  resource_group_name           = var.resource_group_name
+  dns_prefix                    = var.dns_prefix
+  private_cluster_enabled       = true
+  public_network_access_enabled = false
 
   default_node_pool {
-    name                = var.primary_node_poll_name
+    name                = "default"
+    node_count          = 1
     vm_size             = var.vm_size
+    vnet_subnet_id      = var.subnet_id
     os_disk_size_gb     = var.os_disk_size_gb
-    os_disk_type        = var.os_disk_type
-    enable_auto_scaling = var.enable_auto_scaling
-    node_count          = var.primary_node_count
     zones               = var.zones
+    enable_auto_scaling = true
     min_count           = var.primary_min_count
     max_count           = var.primary_max_count
     max_pods            = var.primary_max_pods
   }
 
-  identity {
-    type = var.identity_type
-  }
-
   network_profile {
     network_plugin     = "azure"
-    network_policy     = "azure"
-    service_cidr       = var.service_cidr
-    dns_service_ip     = var.dns_service_ip
-    docker_bridge_cidr = var.docker_bridge_cidr
   }
+
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.aks-identity.id]
+  }
+  
+  depends_on = [
+    azurerm_role_assignment.Contributor-role-assignment,
+  ]
+
 }
 
+
 resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
-  name                  = var.secondary-pool_name
+  name                  = "secondary"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.cluster.id
   vm_size               = var.vm_size
-  enable_auto_scaling   = var.enable_auto_scaling
+  enable_auto_scaling   = true
   os_disk_size_gb       = var.os_disk_size_gb
-  os_disk_type          = var.os_disk_type
-  os_type               = var.os_type
-  workload_runtime      = var.workload_runtime
+  workload_runtime      = "OCIContainer"
   zones                 = var.zones
-  node_count            = var.secondary_node_count
+  node_count            = 1
   min_count             = var.secondary_min_count
   max_count             = var.secondary_max_count
   max_pods              = var.secondary_max_pods
 }
+
+
+
+resource "azurerm_user_assigned_identity" "aks-identity" {
+  name                = "aks_identity"
+  resource_group_name = data.azurerm_resource_group.application-resource-group.name
+  location            = var.location
+  lifecycle {
+    ignore_changes = [
+      tags,
+    ]
+  }
+}
+
+data "azurerm_resource_group" "application-resource-group" {
+  name = var.resource_group_name
+}
+
+resource "azurerm_role_assignment" "Contributor-role-assignment" {
+  scope                = data.azurerm_resource_group.application-resource-group.id
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_user_assigned_identity.aks-identity.principal_id
+  depends_on = [
+    azurerm_user_assigned_identity.aks-identity
+  ]
+}
+

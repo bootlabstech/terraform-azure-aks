@@ -20,14 +20,14 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   }
 
   network_profile {
-    network_plugin     = "azure"
+    network_plugin = "azure"
   }
 
   identity {
     type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.aks-identity.id]
   }
-  
+
   depends_on = [
     azurerm_role_assignment.Contributor-role-assignment,
   ]
@@ -74,4 +74,3 @@ resource "azurerm_role_assignment" "Contributor-role-assignment" {
     azurerm_user_assigned_identity.aks-identity
   ]
 }
-

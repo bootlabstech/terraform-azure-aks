@@ -55,7 +55,7 @@ variable "primary_max_count" {
 variable "primary_max_pods" {
   type        = number
   description = "Maximum number of pods in a nodes"
-  default = 30
+  default     = 30
 }
 
 variable "secondary_min_count" {
@@ -71,5 +71,5 @@ variable "secondary_max_count" {
 variable "secondary_max_pods" {
   type        = number
   description = "Maximum number of pods in a nodes"
-  default = 30
+  default     = 30
 }

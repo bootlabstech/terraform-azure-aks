@@ -74,6 +74,6 @@ variable "secondary_max_pods" {
   default     = 30
 }
 variable "os_sku" {
-  type        = number
+  type        = string
   description = "disk type in a nodes"
 }

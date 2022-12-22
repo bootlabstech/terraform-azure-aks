@@ -17,6 +17,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
     min_count           = var.primary_min_count
     max_count           = var.primary_max_count
     max_pods            = var.primary_max_pods
+    os_sku              = var.os_sku
   }
 
   network_profile {
@@ -47,6 +48,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
   min_count             = var.secondary_min_count
   max_count             = var.secondary_max_count
   max_pods              = var.secondary_max_pods
+  os_sku                = var.os_sku
 }
 
 

@@ -73,3 +73,8 @@ variable "secondary_max_pods" {
   description = "Maximum number of pods in a nodes"
   default     = 30
 }
+variable "os_sku" {
+  type        = number
+  description = "Base in a nodes"
+  default     = 30
+}

@@ -19,6 +19,12 @@ variable "dns_prefix" {
   type        = string
 }
 
+variable "private_cluster_enabled" {
+  description = "Should enabled private cluster"
+  type = bool
+  default = false
+}
+
 
 # default_node_pool
 

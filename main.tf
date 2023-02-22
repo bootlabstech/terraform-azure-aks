@@ -54,7 +54,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
 
 
 resource "azurerm_user_assigned_identity" "aks-identity" {
-  name                = "aks_identity"
+  name                = "${var.name}-aks_identity"
   resource_group_name = data.azurerm_resource_group.application-resource-group.name
   location            = var.location
   lifecycle {

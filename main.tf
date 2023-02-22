@@ -4,7 +4,7 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   resource_group_name           = var.resource_group_name
   dns_prefix                    = var.dns_prefix
   private_cluster_enabled       = var.private_cluster_enabled
-  public_network_access_enabled = var.private_cluster_enabled
+  public_network_access_enabled = !var.private_cluster_enabled
 
   default_node_pool {
     name                = "default"

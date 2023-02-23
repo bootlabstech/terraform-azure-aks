@@ -14,11 +14,6 @@ variable "location" {
   type        = string
 }
 
-variable "dns_prefix" {
-  description = "(The prefix for the resources created in the specified Azure Resource Group"
-  type        = string
-}
-
 
 # default_node_pool
 
@@ -76,6 +71,7 @@ variable "secondary_max_pods" {
 variable "os_sku" {
   type        = string
   description = "disk type in a nodes"
+  default     = "Ubuntu"
 }
 
 variable "private_cluster_enabled" {

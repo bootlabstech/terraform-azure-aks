@@ -32,6 +32,11 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   depends_on = [
     azurerm_role_assignment.Contributor-role-assignment,
   ]
+  lifecycle {
+    ignore_changes = [
+      tags,
+    ]
+  }
 
 }
 
@@ -50,6 +55,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
   max_pods              = var.secondary_max_pods
   os_sku                = var.os_sku
   vnet_subnet_id        = var.subnet_id
+  lifecycle {
+    ignore_changes = [
+      tags,
+    ]
+  }
 }
 
 

@@ -19,12 +19,6 @@ variable "dns_prefix" {
   type        = string
 }
 
-variable "private_cluster_enabled" {
-  description = "Should enabled private cluster"
-  type = bool
-  default = false
-}
-
 
 # default_node_pool
 
@@ -82,4 +76,27 @@ variable "secondary_max_pods" {
 variable "os_sku" {
   type        = string
   description = "disk type in a nodes"
+}
+
+variable "private_cluster_enabled" {
+  description = "This will give private endpoint of the aks cluster"
+  type        = bool
+  default     = true
+}
+
+variable "public_network_access_enabled" {
+  type        = bool
+  description = "This will give public endpoint of the aks cluster"
+  default     = false
+}
+
+variable "default_node_count" {
+  type        = number
+  description = "The number of node to be run in default node pool"
+  default     = 1
+}
+
+variable "secondary_node_count" {
+  type        = number
+  description = "The number of node to be run in secondary node pool"
 }

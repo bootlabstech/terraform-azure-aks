@@ -2,13 +2,13 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   name                          = var.name
   location                      = var.location
   resource_group_name           = var.resource_group_name
-  dns_prefix                    = var.dns_prefix
+  dns_prefix                    = var.name
   private_cluster_enabled       = var.private_cluster_enabled
-  public_network_access_enabled = !var.private_cluster_enabled
+  public_network_access_enabled = var.public_network_access_enabled
 
   default_node_pool {
     name                = "default"
-    node_count          = 1
+    node_count          = var.default_node_count
     vm_size             = var.vm_size
     vnet_subnet_id      = var.subnet_id
     os_disk_size_gb     = var.os_disk_size_gb
@@ -44,11 +44,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
   os_disk_size_gb       = var.os_disk_size_gb
   workload_runtime      = "OCIContainer"
   zones                 = var.zones
-  node_count            = 1
+  node_count            = var.secondary_node_count
   min_count             = var.secondary_min_count
   max_count             = var.secondary_max_count
   max_pods              = var.secondary_max_pods
   os_sku                = var.os_sku
+  vnet_subnet_id        = var.subnet_id
 }
 
 

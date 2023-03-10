@@ -77,6 +77,6 @@ variable "default_node_count" {
   description = "The number of node to be run in default node pool"
 }
 variable "sku_tier" {
-  type        = number
+  type        = string
   description = "The tier of the cluster"
 }

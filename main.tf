@@ -5,6 +5,8 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   dns_prefix                    = var.name
   private_cluster_enabled       = var.private_cluster_enabled
   public_network_access_enabled = var.public_network_access_enabled
+  sku_tier                      = var.sku_tier 
+  
 
   default_node_pool {
     name                = "default"
@@ -36,6 +38,12 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     ignore_changes = [
       tags,
     ]
+  }
+
+  key_vault_secrets_provider {
+    
+    secret_rotation_enabled = true
+
   }
 
 }

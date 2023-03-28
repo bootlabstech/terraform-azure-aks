@@ -80,3 +80,7 @@ variable "sku_tier" {
   type        = string
   description = "The tier of the cluster"
 }
+variable "automatic_channel_upgrade" {
+  type = string
+  default = "stable"
+}

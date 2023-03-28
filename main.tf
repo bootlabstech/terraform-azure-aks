@@ -6,6 +6,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   private_cluster_enabled       = var.private_cluster_enabled
   public_network_access_enabled = var.public_network_access_enabled
   sku_tier                      = var.sku_tier 
+  automatic_channel_upgrade =   var.automatic_channel_upgrade
   
 
   default_node_pool {

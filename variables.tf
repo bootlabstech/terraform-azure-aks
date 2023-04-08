@@ -84,3 +84,15 @@ variable "automatic_channel_upgrade" {
   type = string
   default = "stable"
 }
+variable "service_cidr" {
+  type        = string
+  description = "The tier of the cluster"
+}
+variable "dns_service_ip" {
+  type        = string
+  description = "The tier of the cluster"
+}
+variable "docker_bridge_cidr" {
+  type        = string
+  description = "The tier of the cluster"
+}

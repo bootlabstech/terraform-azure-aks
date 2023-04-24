@@ -2,6 +2,11 @@ variable "name" {
   description = "The name of aks cluster"
   type        = string
 }
+variable "vnet_subnet_id" {
+  description = "The name of aks cluster"
+  type        = string
+}
+
 
 variable "resource_group_name" {
   description = "The resource group name "

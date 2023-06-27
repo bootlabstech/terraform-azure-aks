@@ -82,6 +82,10 @@ variable "os_sku" {
   type        = string
   description = "disk type in a nodes"
 }
+variable "node_count" {
+  type        = string
+  description = "node count"
+}
 
 # variable "name" {
 #   description = "The name of aks cluster"

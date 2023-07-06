@@ -83,14 +83,15 @@ variable "os_sku" {
   description = "disk type in a nodes"
 }
 
-# variable "name" {
-#   description = "The name of aks cluster"
-#   type        = string
-# }
-# variable "resource_group_name" {
-#   description = "The resource group name "
-#   type        = string
-# }
+variable "sku_tier" {
+  description = "The name of aks cluster"
+  type        = string
+}
+
+variable "secondary_node_count" {
+  description = "The resource group name "
+  type        = number
+}
 
 # variable "location" {
 #   description = "The name of location cluster to be created"
@@ -156,10 +157,10 @@ variable "os_sku" {
 #   default     = false
 # }
 
-# variable "default_node_count" {
-#   type        = number
-#   description = "The number of node to be run in default node pool"
-# }
+variable "default_node_count" {
+  type        = number
+  description = "The number of node to be run in default node pool"
+}
 # variable "sku_tier" {
 #   type        = string
 #   description = "The tier of the cluster"

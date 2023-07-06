@@ -5,10 +5,11 @@ resource "azurerm_kubernetes_cluster" "cluster" {
   dns_prefix                    = var.dns_prefix
   private_cluster_enabled       = true
   public_network_access_enabled = false
+  sku_tier = var.sku_tier
 
   default_node_pool {
     name                = "default"
-    node_count          = 1
+    node_count          = var.default_node_count
     vm_size             = var.vm_size
     vnet_subnet_id      = var.subnet_id
     os_disk_size_gb     = var.os_disk_size_gb
@@ -49,7 +50,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "secondary-pool" {
   os_disk_size_gb       = var.os_disk_size_gb
   workload_runtime      = "OCIContainer"
   zones                 = var.zones
-  node_count            = 1
+  node_count            = var.secondary_node_count
   min_count             = var.secondary_min_count
   max_count             = var.secondary_max_count
   max_pods              = var.secondary_max_pods

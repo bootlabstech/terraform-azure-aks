@@ -48,7 +48,6 @@ variable "os_disk_size_gb" {
 variable "zones" {
   type        = list(string)
   description = "Specifies a list of Availability Zones in which this Kubernetes Cluster should be located. "
-  default     = ["1"]
 }
 variable "enable_auto_scaling" {
   type        = bool
@@ -70,7 +69,6 @@ variable "primary_max_pods" {
 variable "os_sku" {
   type        = string
   description = "Specifies the OS SKU used by the agent pool. Possible values include: AzureLinux, Ubuntu, Windows2019, Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. temporary_name_for_rotation must be specified when attempting a change."
-  default     = "Ubuntu"
 }
 variable "network_plugin" {
   description = "The ID of a Subnet"

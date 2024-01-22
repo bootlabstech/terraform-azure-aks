@@ -10,7 +10,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   automatic_channel_upgrade     = var.automatic_channel_upgrade
 
   default_node_pool {
-    name                = "${var.name}-np"
+    name                = "${var.name}np"
     node_count          = var.default_node_count
     vm_size             = var.vm_size
     vnet_subnet_id      = var.vnet_subnet_id

@@ -8,6 +8,10 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   public_network_access_enabled = var.public_network_access_enabled
   sku_tier                      = var.sku_tier
   automatic_channel_upgrade     = var.automatic_channel_upgrade
+  azure_policy_enabled = var.azure_policy_enabled
+  microsoft_defender {
+      log_analytics_workspace_id  = var.log_analytics_workspace_id 
+    }
 
   default_node_pool {
     name                = "${var.name}np"
@@ -21,6 +25,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     max_count           = var.primary_max_count
     max_pods            = var.primary_max_pods
     os_sku              = var.os_sku
+    
 
   }
 

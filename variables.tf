@@ -76,3 +76,15 @@ variable "network_plugin" {
   default     = "azure"
 }
 
+variable "azure_policy_enabled" {
+  description = "The ID of a Subnet"
+  type        = bool
+  default     = false
+  
+}
+variable "log_analytics_workspace_id " {
+  description = "The ID of a Subnet"
+  type        = string
+
+  
+}

@@ -24,6 +24,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     max_count           = var.primary_max_count
     max_pods            = var.primary_max_pods
     os_sku              = var.os_sku
+    orchestrator_version = var.orchestrator_version
     
 
   }
@@ -39,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
   depends_on = [
     azurerm_role_assignment.Contributor-role-assignment,
-  ]
+  ] 
 
   lifecycle {
     ignore_changes = [
@@ -49,7 +50,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
   key_vault_secrets_provider {
     secret_rotation_enabled = true
-    
+
   }
 
 }

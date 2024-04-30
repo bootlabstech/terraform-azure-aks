@@ -82,3 +82,8 @@ variable "azure_policy_enabled" {
   default     = false
   
 }
+variable "orchestrator_version" {
+  type        = string
+  
+  
+}

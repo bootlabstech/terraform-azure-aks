@@ -9,12 +9,11 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   sku_tier                      = var.sku_tier
   automatic_channel_upgrade     = var.automatic_channel_upgrade
   azure_policy_enabled = var.azure_policy_enabled
-  microsoft_defender {
-      log_analytics_workspace_id  = var.log_analytics_workspace_id 
-    }
+  
+
 
   default_node_pool {
-    name                = "${var.name}np"
+    name                = "defaultnp"
     node_count          = var.default_node_count
     vm_size             = var.vm_size
     vnet_subnet_id      = var.vnet_subnet_id
@@ -50,6 +49,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
   key_vault_secrets_provider {
     secret_rotation_enabled = true
+    
   }
 
 }

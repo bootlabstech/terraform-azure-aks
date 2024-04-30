@@ -82,9 +82,3 @@ variable "azure_policy_enabled" {
   default     = false
   
 }
-variable "log_analytics_workspace_id " {
-  description = "The ID of a Subnet"
-  type        = string
-
-  
-}

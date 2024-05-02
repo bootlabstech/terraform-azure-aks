@@ -82,11 +82,11 @@ variable "azure_policy_enabled" {
   default     = false
   
 }
-variable "orchestrator_version" {
-  type        = string
+# variable "orchestrator_version" {
+#   type        = string
   
   
-}
+# }
 variable "kubernetes_version" {
   type        = string
   

@@ -9,6 +9,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   sku_tier                      = var.sku_tier
   automatic_channel_upgrade     = var.automatic_channel_upgrade
   azure_policy_enabled = var.azure_policy_enabled
+  kubernetes_version = var.kubernetes_version
   
 
 
@@ -25,6 +26,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     max_pods            = var.primary_max_pods
     os_sku              = var.os_sku
     orchestrator_version = var.orchestrator_version
+    
     
 
   }

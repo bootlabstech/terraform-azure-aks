@@ -87,3 +87,7 @@ variable "orchestrator_version" {
   
   
 }
+variable "kubernetes_version" {
+  type        = string
+  
+}

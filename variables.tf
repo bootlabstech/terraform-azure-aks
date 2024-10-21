@@ -15,20 +15,20 @@ variable "private_cluster_enabled" {
   type        = bool
   default     = true
 }
-variable "public_network_access_enabled" {
-  type        = bool
-  description = " Whether public network access is allowed for this Kubernetes Cluster. Defaults to true.r"
-  default     = false
-}
+# variable "public_network_access_enabled" {
+#   type        = bool
+#   description = " Whether public network access is allowed for this Kubernetes Cluster. Defaults to true.r"
+#   default     = false
+# }
 variable "sku_tier" {
   type        = string
   description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free, and Standard (which includes the Uptime SLA). Defaults to Free."
 }
-variable "automatic_channel_upgrade" {
-  type        = string
-  description = "The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
-  default     = "stable"
-}
+# variable "automatic_channel_upgrade" {
+#   type        = string
+#   description = "The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
+#   default     = "stable"
+# }
 variable "default_node_count" {
   type        = number
   description = "The initial number of nodes which should exist in the default Node Pool. If specified this must be between 1 and 1000 and between min_count and max_count."
@@ -49,10 +49,10 @@ variable "zones" {
   type        = list(string)
   description = "Specifies a list of Availability Zones in which this Kubernetes Cluster should be located. "
 }
-variable "enable_auto_scaling" {
-  type        = bool
-  description = " is set to true when these variables are set some value primary max_count, min_count, node_count"
-}
+# variable "enable_auto_scaling" {
+#   type        = bool
+#   description = " is set to true when these variables are set some value primary max_count, min_count, node_count"
+# }
 variable "primary_min_count" {
   type        = number
   description = "The minimum number of nodes which should exist in this Node Pool. If specified this must be between 1 and 1000."

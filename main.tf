@@ -5,9 +5,9 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
   resource_group_name           = var.resource_group_name
   dns_prefix                    = var.name
   private_cluster_enabled       = var.private_cluster_enabled
-  public_network_access_enabled = var.public_network_access_enabled
+  # public_network_access_enabled = var.public_network_access_enabled
   sku_tier                      = var.sku_tier
-  automatic_channel_upgrade     = var.automatic_channel_upgrade
+  # automatic_channel_upgrade     = var.automatic_channel_upgrade
   azure_policy_enabled = var.azure_policy_enabled
   kubernetes_version = var.kubernetes_version
   
@@ -20,7 +20,7 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
     vnet_subnet_id      = var.vnet_subnet_id
     os_disk_size_gb     = var.os_disk_size_gb
     zones               = var.zones
-    enable_auto_scaling = var.enable_auto_scaling
+    # enable_auto_scaling = var.enable_auto_scaling
     min_count           = var.primary_min_count
     max_count           = var.primary_max_count
     max_pods            = var.primary_max_pods
